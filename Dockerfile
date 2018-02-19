@@ -10,10 +10,12 @@ ENV APACHEDS_ARCH amd64
 
 ENV APACHEDS_ARCHIVE apacheds-${APACHEDS_VERSION}-${APACHEDS_ARCH}.deb
 ENV APACHEDS_DATA /var/lib/apacheds-${APACHEDS_VERSION}
+ENV APACHEDS_CERT /etc/apacheds
 ENV APACHEDS_USER apacheds
 ENV APACHEDS_GROUP apacheds
 
 VOLUME ${APACHEDS_DATA}
+VOLUME ${APACHEDS_CERT}
 
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections \
     && apt-get update \
@@ -37,6 +39,8 @@ EXPOSE 10389 10636 60088 60464 8080 8443
 
 ENV APACHEDS_INSTANCE default
 ENV APACHEDS_BOOTSTRAP /bootstrap
+ENV APACHEDS_DOMAIN openmicroscopy
+ENV APACHEDS_TOP_DOMAIN org
 
 ENV APACHEDS_SCRIPT run.sh
 ENV APACHEDS_CMD /${APACHEDS_SCRIPT}
@@ -46,6 +50,7 @@ RUN chown ${APACHEDS_USER}:${APACHEDS_GROUP} ${APACHEDS_CMD} \
 
 ADD instance/* ${APACHEDS_BOOTSTRAP}/conf/
 ADD ome.ldif ${APACHEDS_BOOTSTRAP}/
+ADD contextentry.template /
 RUN mkdir ${APACHEDS_BOOTSTRAP}/cache \
     && mkdir ${APACHEDS_BOOTSTRAP}/run \
     && mkdir ${APACHEDS_BOOTSTRAP}/log \
