@@ -21,6 +21,8 @@ docker run --name ldap -d -p 389:10389 openmicroscopy/apacheds
 docker run --name ldap -e APACHEDS_DOMAIN=yourdomain -e APACHEDS_TOP_DOMAIN=yourtopDomain -d -p 389:10389 openmicroscopy/apacheds
 ```
 
+This provides for a preconfigured partition *dc=yourdomain,dc=yourtopDomain*.
+
 ## Usage
 
 You can manage the ldap server with the admin user *uid=admin,ou=system* and the default password *secret*. The *default* instance comes with a pre-configured partition *dc=openmicroscopy,dc=org*.
