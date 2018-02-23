@@ -1,0 +1,4 @@
+dn: dc=${APACHEDS_DOMAIN},dc=${APACHEDS_TOP_DOMAIN}
+dc: ${APACHEDS_DOMAIN}
+objectclass: domain
+objectclass: top

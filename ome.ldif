@@ -1,23 +1,11 @@
 version: 1
 
-dn: dc=org
-objectClass: extensibleObject
-objectClass: domain
-objectClass: top
-dc: org
-
-dn: dc=openmicroscopy,dc=org
-objectClass: extensibleObject
-objectClass: domain
-objectClass: top
-dc: openmicroscopy
-
-dn: ou=Users,dc=openmicroscopy,dc=org
+dn: ou=Users,dc=${APACHEDS_DOMAIN},dc=${APACHEDS_TOP_DOMAIN}
 objectClass: organizationalUnit
 objectClass: top
 ou: Users
 
-dn: ou=Groups,dc=openmicroscopy,dc=org
+dn: ou=Groups,dc=${APACHEDS_DOMAIN},dc=${APACHEDS_TOP_DOMAIN}
 objectClass: organizationalUnit
 objectClass: top
 ou: Groups
